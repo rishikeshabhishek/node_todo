@@ -1,0 +1,23 @@
+{
+    "name": "todo",
+    "version": "1.0.0",
+    "description": "its a simple todo application for manage day by day tasks.",
+    "main": "server.js",
+    "scripts": {
+        "start": "nodemon server.js"
+    },
+    "keywords": [
+        "todo",
+        "node",
+        "express",
+        "mongo"
+    ],
+    "author": "Abhishek Majumdar <abhishek.majumdar98@gmail.com>",
+    "license": "ISC",
+    "dependencies": {
+        "ejs": "^3.1.6",
+        "express": "^4.17.2",
+        "mongoose": "^6.1.4",
+        "nodemon": "^2.0.15"
+    }
+}

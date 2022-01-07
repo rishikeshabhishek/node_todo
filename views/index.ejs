@@ -1,0 +1,77 @@
+<style>
+    .ibtn {
+        margin-left: 28rem
+    }
+</style>
+<%- include("partial/header") %>
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-md-12">
+                    <div class="card px-3">
+                        <div class="card-body">
+                            <h4 class="card-title">Abhi's Todo list</h4>
+                            <form action="addtask" method="post">
+                                <div class="add-items d-flex"> <input type="text" class="form-control todo-list-input" placeholder="What do you need to do today?" name="task" autocomplete="off">
+                                    <button class="add btn btn-primary font-weight-bold todo-list-add-btn" type="submit">Add Task</button> </div>
+                            </form>
+                            <div class="list-wrapper">
+                                <ul class="d-flex flex-column-reverse todo-list">
+                                    <!-- <li class="completed">
+                                        <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox" checked=""> Call Rampbo <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline" style="margin-right: -50rem;"></i>
+                                        <i class="remove mdi fas fa-edit"></i>
+                                    </li>
+                                    <li>
+                                        <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox"> Print bills <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline" style="margin-right: -50rem;"></i>
+                                        <i class="remove mdi fas fa-edit"></i>
+                                    </li> -->
+                                    <% if(tasks.length>0) {for(task of tasks) {%>
+                                        <li <% if(task.isCompleted) {%> class="completed"
+                                            <% } %>>
+                                                <div class="form-check"> <label class="form-check-label"> <input class="checkbox taskcheck" value="<%- task._id %>" type="checkbox" <% if(task.isCompleted) {%> checked
+                                                    <% } %>> <%- task.task %> <i class="input-helper"></i></label> </div>
+                                        </li>
+                                        <div class="ibtn">
+                                            <button class="btn-danger font-weight-bold todo-list-add-btn ibtn delete" value="<%- task._id %>"><i class="remove mdi mdi-close-circle-outline"></i></button>
+                                            <button class="btn-success font-weight-bold todo-list-add-btn edit" value="<%- task._id %>"><i class="remove mdi fas fa-edit" data-toggle="modal" data-target="#exampleModalCenter"></i></button>
+                                        </div>
+                                        <% }} else{%>
+                                            <h3>No Task...</h3>
+                                            <% } %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Edit Task</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <form action="updatetask" method="post">
+                        <div class="form-group">
+                            <input type="hidden" name="taskid" id="taskid">
+                            <input type="text" class="form-control" id="task" name="task" autocomplete="off">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <%- include("partial/footer") %>
